@@ -1,1 +1,32 @@
-app.css
+body{
+	background-color: #477087;
+}
+.table-container {
+  width: 45%;
+  margin: auto;
+}
+
+td {
+  width: 20%;
+  position: relative;
+}
+td:after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+td .content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0
+  }
+
+  .inactive {
+  	background-color: #90BF60;
+  }
+
+  .filled {
+  	background-color: #D4846A;
+  }
