@@ -16,10 +16,12 @@ threesApp.controller('BoardController',
 
 	$scope.startGame = function() {
 		boardEvents.generateNumber($scope.board)
+		boardEvents.generateNumber($scope.board)
+		$scope.showStartButton = false
 	};
 
 	$document.on('keydown', function(event){
-		keyEvents.chooseCompileDirection(event.keyCode)
+		keyEvents.chooseCompileDirection(event.keyCode, $scope.board)
 	});
 
 	// $scope.$on('$destroy', function () {
