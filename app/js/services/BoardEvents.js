@@ -1,5 +1,9 @@
 threesApp.factory('boardEvents',function(){
 	return {
+		compileLeft: function(board){
+			board.values[3][3] = 5000;
+			console.log(board)
+		},
 		generateNumber: function(board) {
 			var random = Math.floor(Math.random() * 16);
 			if (!board.flattenBoard()[random]) {
@@ -11,6 +15,7 @@ threesApp.factory('boardEvents',function(){
 			} else {
 				this.generateNumber(board);
 			}
-		}
+		};
+
 	}
 });
