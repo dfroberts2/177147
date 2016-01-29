@@ -3,6 +3,7 @@
 threesApp.controller('BoardController',
 	function BoardController($scope, boardEvents, boardMethods){
 	$scope.board={
+		score : 0,
 		values: [[null, null, null, null],
 				 [null, null, null, null],
 				 [null, null, null, null],
@@ -15,5 +16,5 @@ threesApp.controller('BoardController',
 
 	$scope.startGame = function() {
 		boardEvents.generateNumber($scope.board)
-	}
+	};
 });

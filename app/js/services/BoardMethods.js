@@ -4,6 +4,10 @@ threesApp.factory('boardMethods',function(){
 			return board.values.reduce(function(a, b){ 
 				return a.concat(b)
 			});
+		},
+
+		calculateScore: function(board) {
+			console.log("Score")
 		}
 	}
 });
