@@ -1,13 +1,18 @@
 'use strict';
 
 threesApp.controller('BoardController',
-	function BoardController($scope, boardEvents){
+	function BoardController($scope, boardEvents, boardMethods){
 	$scope.board={
-		rowOne: [undefined, undefined, undefined, undefined],
-		rowTwo: [undefined, undefined, undefined, undefined],
-		rowThree: [undefined, undefined, undefined, undefined],
-		rowFour: [undefined, undefined, undefined, undefined]
-	},
+		values: [[null, null, null, null],
+				 [null, null, null, null],
+				 [null, null, null, null],
+				 [null, null, null, null]],
+
+		flattenBoard: function(){
+			return boardMethods.flattenBoard(this)
+		}
+	};
+
 	$scope.startGame = function() {
 		boardEvents.generateNumber($scope.board)
 	}
