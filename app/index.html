@@ -1,38 +1,27 @@
 <!doctype html>
-<html lang="en" ng-app="eventsApp">
+<html lang="en" ng-app="threesApp">
 <head>
 	<meta charset="utf-8">
 	<title>177147!</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="/css/app.css"/>
 </head>
-<body>
+<body ng-cloak>
 	<h2>177147!</h2>
-	<div class="table-container">
+	<div class="table-container" ng-controller="BoardController">
+	<button class="btn">Start Game</button>
 		<table class="table table-bordered">
 			<tr>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
+				<td ng-repeat="cellValue in board.rowOne track by $index" class="inactive">{{cellValue}}</td>
 			</tr>
 			<tr>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="filled"></td>
-				<td class="inactive"></td>
+				<td ng-repeat="cellValue in board.rowTwo track by $index" class="inactive">{{cellValue}}</td>
 			</tr>
 			<tr>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
+				<td ng-repeat="cellValue in board.rowThree track by $index" class="inactive">{{cellValue}}</td>
 			</tr>
 			<tr>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
-				<td class="inactive"></td>
+				<td ng-repeat="cellValue in board.rowFour track by $index" class="inactive">{{cellValue}}</td>
 			</tr>
 		</table>
 	</div>
@@ -41,5 +30,6 @@
 <script src="/lib/bootstrap.min.js"></script>
 <script src="/lib/angular/angular.js"></script>
 <script src="/js/app.js"></script>
+<script src="/js/controllers/BoardController.js"></script>
 </body>
 </html>
