@@ -11,6 +11,9 @@ threesApp.factory('boardEvents',function(){
 			} else {
 				this.generateNumber(board);
 			}
+		},
+		compileLeft: function(board){
+			console.log("lefty loosy")
 		}
 	}
 });
