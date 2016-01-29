@@ -9,7 +9,6 @@
 <body game-controls ng-cloak>
 	<h2>177147!</h2>
 	<div class="table-container" ng-controller="BoardController">
-		<button ng-click="startGame()" class="btn">Start Game</button>
 		<table class="table table-bordered">
 			<tr>
 				<td ng-repeat="cellValue in board.values[0] track by $index" class="inactive">{{cellValue}}</td>
@@ -24,6 +23,7 @@
 				<td ng-repeat="cellValue in board.values[3] track by $index" class="inactive">{{cellValue}}</td>
 			</tr>
 		</table>
+		<button ng-init="showStartButton=true" ng-show="showStartButton" ng-click="startGame(); show=false" class="btn">Start Game</button>
 	</div>
 
 <script src="/lib/jquery.min.js"></script>
