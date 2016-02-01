@@ -15,21 +15,21 @@ threesApp.factory('boardEvents',function(){
 
 		compileLeft: function(board){
 			board.values.forEach(function(row, rowNumber){
-				shiftLeft(row, rowNumber, board)
-				// row.forEach(function(cell,index){
-					
-	
-				// });
+				row = shiftLeft(row, rowNumber, board)
+				// row.forEach(function)
 			}); 
+			board.values[rowNumber] = row
 		}
 	}
 
 	function shiftLeft(row, rowNumber, board){
-		var rowClone = row.slice(0);
-		rowClone.forEach(function(cell, cellNumber){
-			if (cell == null){
-				board.values[rowNumber].push(board.values[rowNumber].splice(cellNumber, 1)[0]);
-			}
-		})
+		row = row.filter(function(cell){
+			return cell != null
+		});
+		var nullLength = 4 - row.length;
+		for(var i = 0; i < nullLength; i++){
+			row.push(null);
+		}
+		return row
 	}
 });
