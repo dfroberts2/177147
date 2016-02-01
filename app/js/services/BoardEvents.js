@@ -14,8 +14,22 @@ threesApp.factory('boardEvents',function(){
 		},
 
 		compileLeft: function(board){
-			board.values[3][3] = 5000;
-			console.log(board)
-		};
+			board.values.forEach(function(row, rowNumber){
+				shiftLeft(row, rowNumber, board)
+				// row.forEach(function(cell,index){
+					
+	
+				// });
+			}); 
+		}
+	}
+
+	function shiftLeft(row, rowNumber, board){
+		var rowClone = row.slice(0);
+		rowClone.forEach(function(cell, cellNumber){
+			if (cell == null){
+				board.values[rowNumber].push(board.values[rowNumber].splice(cellNumber, 1)[0]);
+			}
+		})
 	}
 });
