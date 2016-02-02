@@ -18,7 +18,7 @@ threesApp.factory('boardEvents',function(boardMethods){
 				row = boardMethods.shiftRowLeft(row);
 				row.forEach(function(cell, cellNumber) {
 					if (cell == row[cellNumber+1] && cell != null) {
-						row[cellNumber] = Math.pow(3, getBaseLog(3,cell)+1);
+						row[cellNumber] = Math.round(Math.pow(3, getBaseLog(3,cell)+1));
 						row[cellNumber+1] = null;
 					}
 				});
