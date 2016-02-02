@@ -1,5 +1,5 @@
 threesApp.factory('boardMethods',function(){
-	return {
+	var boardMethodsFunctions = {
 		flattenBoard: function(board) {
 			return board.values.reduce(function(a, b){ 
 				return a.concat(b)
@@ -17,7 +17,7 @@ threesApp.factory('boardMethods',function(){
 			});
 		},
 
-		shiftRowLeft: function(row){
+		shiftRowLeft: function(row) {
 			row = row.filter(function(cell){
 				return cell != null
 			});
@@ -26,7 +26,13 @@ threesApp.factory('boardMethods',function(){
 				row.push(null);
 			}
 			return row
+		},
+
+		rotateBoard: function(board) {
+			board.values = (_.zip.apply(_, board.values));
+			boardMethodsFunctions.reverseRows(board)
 		}
 
 	}
+	return boardMethodsFunctions
 });

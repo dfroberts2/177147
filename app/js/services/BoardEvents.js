@@ -13,12 +13,12 @@ threesApp.factory('boardEvents',function(boardMethods){
 			}
 		},
 
-		compileLeft: function(board){
+		compileLeft: function(board) {
 			board.values.forEach(function(row, rowNumber){
 				row = boardMethods.shiftRowLeft(row);
 				row.forEach(function(cell, cellNumber) {
 					if (cell == row[cellNumber+1] && cell != null) {
-						row[cellNumber] = Math.pow(cell, 2);
+						row[cellNumber] = Math.pow(3, getBaseLog(3,cell)+1);
 						row[cellNumber+1] = null;
 					}
 				});
@@ -26,12 +26,32 @@ threesApp.factory('boardEvents',function(boardMethods){
 			}); 
 		},
 
-		compileRight: function(board){
+		compileRight: function(board) {
 			boardMethods.reverseRows(board);
 			boardEventsFunctions.compileLeft(board);
 			boardMethods.reverseRows(board);
+		},
+
+		compileUp: function(board) {
+			boardMethods.rotateBoard(board);
+			boardEventsFunctions.compileRight(board);
+			boardMethods.rotateBoard(board);
+			boardMethods.rotateBoard(board);
+			boardMethods.rotateBoard(board);
+		},
+
+		compileDown: function(board) {
+			boardMethods.rotateBoard(board);
+			boardEventsFunctions.compileLeft(board);
+			boardMethods.rotateBoard(board);
+			boardMethods.rotateBoard(board);
+			boardMethods.rotateBoard(board);
 		}
 	};
+
+	function getBaseLog(x, y) {
+  		return Math.log(y) / Math.log(x);
+	}
 
 	return boardEventsFunctions
 
