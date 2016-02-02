@@ -9,7 +9,7 @@ threesApp.controller('BoardController',
 				 [null, null, null, null],
 				 [null, null, null, null]],
 
-		flattenBoard: function(){
+		flattenBoard: function() {
 			return boardMethods.flattenBoard(this)
 		}
 	};
@@ -20,7 +20,7 @@ threesApp.controller('BoardController',
 		this.showStartButton = false
 	};
 
-	$document.on('keydown', function(event){
+	$document.on('keydown', function(event) {
 		var origValues = $scope.board.flattenBoard();
 		keyEvents.chooseCompileDirection(event.keyCode, $scope.board)
 		if (!_.isEqual($scope.board.flattenBoard(), origValues)) {
