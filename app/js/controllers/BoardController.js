@@ -7,6 +7,12 @@ threesApp.controller('BoardController',
 				 [null, null, null, null],
 				 [null, null, null, null],
 				 [null, null, null, null]],
+		// values: [[1, 2, 3, 4],
+		// 		 [1, 6, 7, 8],
+		// 		 [9, 10, 11, 12],
+		// 		 [13, 14, 15, 16]],
+
+
 		
 		score: function(){
 
@@ -38,6 +44,9 @@ threesApp.controller('BoardController',
 		keyEvents.chooseCompileDirection(event.keyCode, $scope.board)
 		if (!_.isEqual($scope.board.flattenBoard(), origValues)) {
 			boardEvents.generateNumber($scope.board)
+		}
+		if (boardMethods.checkGameOver($scope.board)) {
+			console.log("gameover")
 		}
 		$scope.$apply();
 	});
