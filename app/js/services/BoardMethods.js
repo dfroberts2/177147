@@ -7,7 +7,14 @@ threesApp.factory('boardMethods',function(){
 		},
 
 		calculateScore: function(board) {
-			console.log("Score")
+			var scorableCells = board.flattenBoard().filter(function(cell) {
+				return cell != 3 && cell != null
+			});
+			if (scorableCells.length) {
+				return scorableCells.reduce(function(a, b){
+					return a + b
+				})
+			}
 		},
 
 		reverseRows: function(board) {
