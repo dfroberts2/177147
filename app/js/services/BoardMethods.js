@@ -8,6 +8,25 @@ threesApp.factory('boardMethods',function(){
 
 		calculateScore: function(board) {
 			console.log("Score")
+		},
+
+		reverseRows: function(board) {
+		board.values.forEach(function(row, rowNumber){
+				row.reverse();
+				board.values[rowNumber] = row;
+			});
+		},
+
+		shiftRowLeft: function(row){
+			row = row.filter(function(cell){
+				return cell != null
+			});
+			var padLength = 4 - row.length;
+			for(var i = 0; i < padLength; i++){
+				row.push(null);
+			}
+			return row
 		}
+
 	}
 });
