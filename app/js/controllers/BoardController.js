@@ -17,13 +17,23 @@ threesApp.controller('BoardController',
 	$scope.startGame = function() {
 		boardEvents.generateNumber($scope.board)
 		boardEvents.generateNumber($scope.board)
-		$scope.showStartButton = false
+		this.showStartButton = false
 	};
 
 	$document.on('keydown', function(event){
+		var origValues = $scope.board.flattenBoard();
 		keyEvents.chooseCompileDirection(event.keyCode, $scope.board)
+		if (!_.isEqual($scope.board.flattenBoard(), origValues)) {
+			boardEvents.generateNumber($scope.board)
+		}
+		else{
+			console.log("no change")
+		}
+		$scope.$apply();
 	});
 
 	// $scope.$on('$destroy', function () {
  //    	$document.off('keyup',
+
+
 });
