@@ -1,5 +1,5 @@
 threesApp.factory('boardEvents',function(){
-	return {
+	var boardEventsFunctions = {
 		generateNumber: function(board) {
 			var random = Math.floor(Math.random() * 16);
 			if (!board.flattenBoard()[random]) {
@@ -15,19 +15,39 @@ threesApp.factory('boardEvents',function(){
 
 		compileLeft: function(board){
 			board.values.forEach(function(row, rowNumber){
-				row = shiftLeft(row, rowNumber, board)
-				// row.forEach(function)
+				row = shiftRowLeft(row);
+				row.forEach(function(cell, cellNumber) {
+					if (cell == row[cellNumber+1] && cell != null) {
+						row[cellNumber] = Math.pow(cell, 2);
+						row[cellNumber+1] = null;
+					}
+				});
+				board.values[rowNumber] = shiftRowLeft(row);
 			}); 
-			board.values[rowNumber] = row
+		},
+
+		compileRight: function(board){
+			reverseRows(board);
+			boardEventsFunctions.compileLeft(board);
+			reverseRows(board);
 		}
+	};
+
+	return boardEventsFunctions
+
+	function reverseRows(board) {
+		board.values.forEach(function(row, rowNumber){
+				row.reverse();
+				board.values[rowNumber] = row;
+			});
 	}
 
-	function shiftLeft(row, rowNumber, board){
+	function shiftRowLeft(row){
 		row = row.filter(function(cell){
 			return cell != null
 		});
-		var nullLength = 4 - row.length;
-		for(var i = 0; i < nullLength; i++){
+		var padLength = 4 - row.length;
+		for(var i = 0; i < padLength; i++){
 			row.push(null);
 		}
 		return row
