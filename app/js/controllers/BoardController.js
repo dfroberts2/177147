@@ -3,14 +3,18 @@
 threesApp.controller('BoardController',
 	function BoardController($scope, $document, boardEvents, boardMethods, keyEvents){
 	$scope.board = {
-		score : 0,
 		values: [[null, null, null, null],
 				 [null, null, null, null],
 				 [null, null, null, null],
 				 [null, null, null, null]],
+		
+		score: function(){
+
+			return boardMethods.calculateScore(this);
+		},
 
 		flattenBoard: function() {
-			return boardMethods.flattenBoard(this)
+			return boardMethods.flattenBoard(this);
 		}
 	};
 
@@ -20,14 +24,20 @@ threesApp.controller('BoardController',
 		this.showStartButton = false
 	};
 
+	$scope.setCellClass = function(cellValue) {
+		if (cellValue == null) {
+			return "inactive"
+		}
+		else {
+			return "filled"
+		}
+	}
+
 	$document.on('keydown', function(event) {
 		var origValues = $scope.board.flattenBoard();
 		keyEvents.chooseCompileDirection(event.keyCode, $scope.board)
 		if (!_.isEqual($scope.board.flattenBoard(), origValues)) {
 			boardEvents.generateNumber($scope.board)
-		}
-		else{
-			console.log("no change")
 		}
 		$scope.$apply();
 	});
