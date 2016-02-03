@@ -1,7 +1,7 @@
 'use strict';
 
 threesApp.controller('BoardController',
-	function BoardController($scope, $document, boardEvents, boardMethods, keyEvents){
+	function BoardController($scope, $document, $location, boardEvents, boardMethods, keyEvents){
 	$scope.board = {
 		values: [[null, null, null, null],
 				 [null, null, null, null],
@@ -46,7 +46,9 @@ threesApp.controller('BoardController',
 			boardEvents.generateNumber($scope.board)
 		}
 		if (boardMethods.checkGameOver($scope.board)) {
-			console.log("gameover")
+			$scope.$apply(function(){
+				$location.path('/scores/new').search({score: $scope.board.score() });
+			});
 		}
 		$scope.$apply();
 	});
